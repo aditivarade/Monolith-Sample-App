@@ -1,0 +1,46 @@
+openapi: 3.0.0 
+info: 
+  title: Supplier Service API 
+  version: 1.0.0 
+paths: 
+  /suppliers: 
+    get: 
+      summary: Retrieve a list of suppliers 
+      responses: 
+        '200': 
+          description: A list of suppliers 
+          content: 
+            application/json: 
+              schema: 
+                type: array 
+                items: 
+                  $ref: '#/components/schemas/Supplier' 
+  /suppliers/{id}: 
+    get: 
+      summary: Retrieve a specific supplier by ID 
+      parameters: 
+        - name: id 
+          in: path 
+          required: true 
+          schema: 
+            type: string 
+      responses: 
+        '200': 
+          description: A single supplier 
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/Supplier' 
+components: 
+  schemas: 
+    Supplier: 
+      type: object 
+      properties: 
+        id: 
+          type: string 
+        name: 
+          type: string 
+        contact: 
+          type: string 
+        address: 
+          type: string

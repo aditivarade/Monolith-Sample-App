@@ -1,0 +1,44 @@
+openapi: 3.0.0 
+info: 
+  title: Part Service API 
+  version: 1.0.0 
+paths: 
+  /parts: 
+    get: 
+      summary: Retrieve a list of parts 
+      responses: 
+        '200': 
+          description: A list of parts 
+          content: 
+            application/json: 
+              schema: 
+                type: array 
+                items: 
+                  $ref: '#/components/schemas/Part' 
+  /parts/{id}: 
+    get: 
+      summary: Retrieve a specific part by ID 
+      parameters: 
+        - name: id 
+          in: path 
+          required: true 
+          schema: 
+            type: string 
+      responses: 
+        '200': 
+          description: A single part 
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/Part' 
+components: 
+  schemas: 
+    Part: 
+      type: object 
+      properties: 
+        id: 
+          type: string 
+        name: 
+          type: string 
+        description: 
+          type: string
