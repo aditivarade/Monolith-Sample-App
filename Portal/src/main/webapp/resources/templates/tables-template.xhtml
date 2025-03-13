@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title><ui:insert name="title"/></title>
+    <h:outputStylesheet library="css" name="styles.css"/>
+    <ui:include src="../head.xhtml"/>
+    <ui:insert name="style"/>
+</h:head>
+
+<h:body>
+    <p:growl id="messages" life="4000" showDetail="true" skipDetailIfEqualsSummary="true"/>
+    <h:form>
+        <p:toolbar styleClass="header">
+            <p:toolbarGroup>
+                <ui:insert name="logo">Company Logo</ui:insert>
+                <h1 id="header"><p:outputLabel><ui:insert name="title"/> Table</p:outputLabel></h1>
+            </p:toolbarGroup>
+            <p:toolbarGroup align="right">
+                <p:menuButton icon="pi pi-user" buttonStyleClass="rounded-button ui-button-raised ui-button-secondary">
+                    <p:menuitem value="Logout" action="#{login.logout()}" icon="pi pi-sign-out"/>
+                </p:menuButton>
+            </p:toolbarGroup>
+        </p:toolbar>
+    </h:form>
+    <div class="wrapper">
+        <p:toolbar styleClass="border">
+            <!-- database management links -->
+            <p:toolbarGroup>
+                <h:form id="tools">
+                    <p:defaultCommand target="insert"/>
+                    <p:commandButton ajax="false" value="Supplier" action="/portal/supplier?faces-redirect=true"
+                                     styleClass="ui-button-raised ui-button-info mr-1" immediate="true"/>
+                    <p:commandButton ajax="false" value="Part" action="/portal/part?faces-redirect=true"
+                                     styleClass="ui-button-raised ui-button-success mr-1" immediate="true"/>
+                    <p:commandButton ajax="false" value="Project" action="/portal/project?faces-redirect=true"
+                                     styleClass="ui-button-raised ui-button-help mr-1" immediate="true"/>
+                    <p:commandButton ajax="false" value="SPJ" action="/portal/spj?faces-redirect=true"
+                                     styleClass="ui-button-raised ui-button-warning mr-2" immediate="true"/>
+
+                    <i class="pi pi-ellipsis-v mr-2"/>
+
+                    <ui:insert name="add_button">Button to add record to table</ui:insert>
+                </h:form>
+            </p:toolbarGroup>
+            <ui:insert name="search">Search Tool to find a Record</ui:insert>
+        </p:toolbar>
+        <h:form id="datatable">
+            <div id="table">
+                <ui:insert name="table">Main Datatable</ui:insert>
+            </div>
+        </h:form>
+    </div>
+    <footer>
+        <p:outputLabel styleClass="footer">Copyright &#169; 2025 Michael C. Herrera &#160;| &#160;No Rights
+            Reserved</p:outputLabel>
+    </footer>
+</h:body>
+
+</html>

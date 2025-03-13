@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="jakarta.faces.facelets">
+
+<h:head>
+    <title>Employee Portal</title>
+    <h:outputStylesheet library="css" name="styles.css"/>
+    <h:outputStylesheet library="css" name="portal.css"/>
+    <ui:include src="../resources/head.xhtml"/>
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:toolbar styleClass="header">
+            <p:toolbarGroup>
+                <p:graphicImage library="images" name="logo_horizontal_blue.png" height="45px"/>
+                <p:spacer width="20px"/>
+                <i class="pi pi-bars mr-2" style="color: #2196f3"/>
+                <h1 id="header"><p:outputLabel>Employee Portal</p:outputLabel></h1>
+            </p:toolbarGroup>
+            <p:toolbarGroup align="right">
+                <p:menuButton icon="pi pi-user" buttonStyleClass="rounded-button ui-button-raised ui-button-secondary">
+                    <p:menuitem value="Logout" action="#{login.logout()}" icon="pi pi-sign-out"/>
+                </p:menuButton>
+            </p:toolbarGroup>
+        </p:toolbar>
+
+        <!-- dashboard cards to contain links to various pages in the logged in area -->
+        <div id="content">
+            <!-- This panel contains links to database management (CRUD) -->
+            <p:dashboard styleClass="flex-box" model="#{portalBean.dashboardModel}" responsive="true">
+                <p:panel id="database_management" header="Database Management" closable="true">
+                    <div class="card-content card1">
+                        <p:commandLink value="Supplier Table" action="/portal/supplier?faces-redirect=true"/><br/>
+                        <p:commandLink value="Part Table" action="/portal/part?faces-redirect=true"/><br/>
+                        <p:commandLink value="Project Table" action="/portal/project?faces-redirect=true"/><br/>
+                        <p:commandLink value="SPJ Table" action="/portal/spj?faces-redirect=true"/>
+                    </div>
+                </p:panel>
+                <p:panel id="panel2" header="Panel" closable="true">
+                    <!--suppress CheckTagEmptyBody -->
+                    <div class="card-content">Comming Soon!</div>
+                </p:panel>
+                <p:panel id="panel3" header="Panel" closable="true">
+                    <!--suppress CheckTagEmptyBody -->
+                    <div class="card-content">Comming Soon!</div>
+                </p:panel>
+            </p:dashboard>
+        </div>
+    </h:form>
+</h:body>
+
+</html>

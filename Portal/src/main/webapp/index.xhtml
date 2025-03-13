@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="jakarta.faces.facelets">
+<h:head>
+    <title>Home</title>
+    <h:outputStylesheet library="css" name="styles.css"/>
+    <h:outputStylesheet library="css" name="home.css"/>
+    <ui:include src="resources/head.xhtml"/>
+    <!--suppress CssUnusedSymbol -->
+    <style>
+        /* corrected X (formerly Twitter) icon */
+        .pi-twitter:before {
+            content: "\1D54F";
+            position: relative;
+            font-size: 1.15em;
+            top: -3px;
+            right: -1px;
+        }
+    </style>
+</h:head>
+<h:body>
+    <p:growl id="messages" showDetail="true" skipDetailIfEqualsSummary="true"/>
+    <h:form>
+        <p:toolbar id="header" styleClass="header">
+            <p:toolbarGroup align="right">
+                <p:menuButton icon="pi pi-user" buttonStyleClass="rounded-button ui-button-raised ui-button-secondary">
+                    <p:menuitem value="Employee Login" onclick="PF('login').show()" icon="pi pi-sign-in"/>
+                </p:menuButton>
+            </p:toolbarGroup>
+        </p:toolbar>
+        <p:sticky target="header"/>
+    </h:form>
+
+    <!-- login popup dialog -->
+    <h:form>
+        <p:dialog widgetVar="login" modal="true" fitViewport="true" closeOnEscape="true" showEffect="blind"
+                  position="right,top" style="margin: 50px">
+            <div id="login">
+                <h1><p:outputLabel styleClass="login-label" value="Login"/></h1>
+                <p:inputText id="username" placeholder="User Name" value="#{login.username}"/>
+                <p:password id="password" placeholder="Password" value="#{login.password}"/>
+                <p:commandButton action="#{login.login()}" value="Submit" update="messages @form"
+                                 styleClass="login-button"/>
+            </div>
+        </p:dialog>
+    </h:form>
+
+    <div class="banner">
+        <p:graphicImage alt="Logo" library="images" name="logo_white.png"/>
+        <h1 class="title">ASDV Construction</h1>
+    </div>
+
+    <div class="info">
+        <p style="left: -40px">At <span style="color: #495057; font-size: 1.1em">ASDV Construction</span>, we specialize
+            in delivering high-quality construction services for residential, commercial, and industrial projects.</p>
+        <p:spacer height="5px"/>
+        <p>With over 15 years of experience, our team of skilled professionals
+            is dedicated to exceeding client expectations through innovative solutions, exceptional craftsmanship,
+            and timely project completion.</p>
+        <p:spacer height="5px"/>
+        <p style="left: 40px">Whether you're building your dream home or expanding your business, <span
+                style="color: #495057; font-size: 1.1em">ASDV Construction</span> is committed to making your vision
+            a reality.</p>
+    </div>
+
+    <!-- content places holder -->
+    <div class="content">
+        <div class="box1 flex">
+
+        </div>
+        <div class="box2 flex">
+
+        </div>
+        <div class="box3 flex">
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="content">
+            <div class="flex f1">
+                <h2>ASDV Construction</h2>
+                <p:outputLabel styleClass="block smaller">Copyright &#169; 2025 Michael C. Herrera</p:outputLabel>
+                <p:outputLabel styleClass="block smaller">No Rights Reserved</p:outputLabel>
+                <p:button icon="pi pi-facebook"
+                          styleClass="rounded-button mr-2 m-t1 border-white facebook ui-button-raised"/>
+                <p:button icon="pi pi-instagram"
+                          styleClass="rounded-button mr-2 m-t1 border-white instagram ui-button-raised"/>
+                <p:button icon="pi pi-twitter"
+                          styleClass="rounded-button mr-2 m-t1 border-white twitter-x ui-button-raised"/>
+            </div>
+            <div class="flex f2">
+                <h:form>
+                    <h3><p:outputLabel value="Site Map" styleClass="f-col-title"/></h3>
+                    <p:commandLink value="Page1" styleClass="footer-link"/><br/>
+                    <p:commandLink value="Page2" styleClass="footer-link"/><br/>
+                    <p:commandLink value="Page3" styleClass="footer-link"/><br/>
+                    <p:commandLink value="Page4" styleClass="footer-link"/>
+                </h:form>
+            </div>
+            <div class="flex f3">
+                <h:form>
+                    <h3><p:outputLabel value="Company" styleClass="f-col-title"/></h3>
+                    <p:commandLink value="Contact Us" styleClass="footer-link"/><br/>
+                    <p:commandLink value="Privacy Policy" styleClass="footer-link"/><br/>
+                    <p:commandLink value="Terms &amp; Condistion" styleClass="footer-link"/><br/>
+                    <p:commandLink value="Career" styleClass="footer-link"/>
+                </h:form>
+            </div>
+        </div>
+    </footer>
+</h:body>
+</html>
